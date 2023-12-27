@@ -1,0 +1,12 @@
+//
+//  AVR_Starter_OLED
+//  Text
+//  ----------------------------------
+//  Developed with embedXcode
+//
+//  Project 	AVR_Starter
+//  Created by 	Ruedi Heimlicher on 27.12.2023
+//  Copyright 	© 2023 ___ORGANIZATIONNAME___
+//  License	<#license#>
+//
+

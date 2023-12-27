@@ -161,6 +161,8 @@ void lcd_init(uint8_t dispAttr){
     lcd_command(commandSequence, sizeof(commandSequence));
     lcd_clrscr();
 }
+
+
 void lcd_gotoxy(uint8_t x, uint8_t y){
     x = x * sizeof(FONT[0]);
     lcd_goto_xpix_y(x,y);
@@ -512,6 +514,7 @@ uint8_t lcd_fillCircle(uint8_t center_x, uint8_t center_y, uint8_t radius, uint8
     }
     return result;
 }
+
 uint8_t lcd_drawBitmap(uint8_t x, uint8_t y, const uint8_t *picture, uint8_t width, uint8_t height, uint8_t color){
     uint8_t result,i,j, byteWidth = (width+7)/8;
     for (j = 0; j < height; j++) {
@@ -525,20 +528,28 @@ uint8_t lcd_drawBitmap(uint8_t x, uint8_t y, const uint8_t *picture, uint8_t wid
     }
     return result;
 }
+
+
 void lcd_display() 
 {
-//#if defined (SSD1306) || defined (SSD1309)
+   
+#if defined (SSD1306) || defined (SSD1309)
     lcd_gotoxy(0,0);
     lcd_data(&displayBuffer[0][0], DISPLAY_WIDTH*DISPLAY_HEIGHT/8);
-   /*
+    
+   
+   
 #elif defined SH1106
     for (uint8_t i = 0; i < DISPLAY_HEIGHT/8; i++){
         lcd_gotoxy(0,i);
         lcd_data(displayBuffer[i], sizeof(displayBuffer[i]));
     }
+    
 #endif
-    */
+    
+   
 }
+
 void lcd_clear_buffer() {
     for (uint8_t i = 0; i < DISPLAY_HEIGHT/8; i++){
         memset(displayBuffer[i], 0x00, sizeof(displayBuffer[i]));

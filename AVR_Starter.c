@@ -30,44 +30,39 @@ uint16_t loopCount2=0;
 #define SDAPIN		4
 #define SCLPIN		5
 
-#include "lcd.c"
+#include "lcd.h"
 
 #define TEXTMODE
 #define SSD1306 1
 
 volatile uint8_t					Programmstatus=0x00;
 
+extern void lcd_display(void);
 
 void slaveinit(void)
 {
 
 	//LCD
    LOOPLED_DDR |= (1<<LOOPLED_PIN);
-   lcd_init(LCD_DISP_ON);    // init lcd and turn on
+   //lcd_init(LCD_DISP_ON);    // init lcd and turn on
 }
 
 int main (void)
-{
-	
-	
-	
-	slaveinit();
+{	
+	slaveinit(); // Init LoopLed
 	_delay_ms(1000);
-	uint8_t i=0;
-
+   lcd_init(LCD_DISP_ON);    // init lcd and turn on
+	
    lcd_puts("Hello World");  // put string from RAM to display (TEXTMODE) or buffer (GRAPHICMODE)
    lcd_gotoxy(0,2);          // set cursor to first column at line 3
    lcd_puts_p(PSTR("String from flash"));  // puts string form flash to display (TEXTMODE) or buffer 
-   lcd_display();
-
+   
+   //lcd_display();
    
    // MARK: while
 	while (1) 
 	{
-		
 		loopCount0 ++;
-		//_delay_ms(2);
-		
 		if (loopCount0 >=0xFFFE)
 		{
          loopCount0 = 0;
@@ -82,14 +77,8 @@ int main (void)
 				}
 
 			}
-			
 			loopCount0 =0;
 		}
-		
-      
-      
 	} // while
-	
-	
 	return 0;
 }

@@ -111,7 +111,6 @@ extern "C" {
 #define DISPLAY_HEIGHT        64
 
 
-void lcd_display(void); 
 void lcd_command(uint8_t cmd[], uint8_t size);    // transmit command to display
 void lcd_data(uint8_t data[], uint16_t size);    // transmit data to display
 void lcd_init(uint8_t dispAttr);
